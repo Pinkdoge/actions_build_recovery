@@ -1,0 +1,33 @@
+name: ACTIONS_BUILD_TWRP
+
+on:
+  watch:
+    types: [started]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Install required packages
+      run: sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc unzip
+
+    - name: Install Repo
+      run: |
+        mkdir ~/bin
+        curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+        chmod a+x ~/bin/repo
+        
+    - name: Initialize a Repo client
+      run: |
+        PATH=~/bin:$PATH
+        mkdir workspace
+        cd workspace
+        git config --global user.name "Pinkdoge"
+        git config --global user.email "Pinkdoge@github.com"
+        repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+        repo sync -j3 -c --no-clone-bundle --no-tags
