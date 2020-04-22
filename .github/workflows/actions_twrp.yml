@@ -6,7 +6,7 @@ on:
 
 env:
   TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
-  TWRP_BRANCH: twrp-8.1
+  TWRP_BRANCH: twrp-9.0
   GIT_USERNAME: Pinkdoge
   DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
   DT_BRANCH: treble-9.0
@@ -58,6 +58,12 @@ jobs:
         repo init --depth=1 -u $TWRP_SSHKEY -b $TWRP_BRANCH
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
         
+    - name: fix cannot locate product
+      run: |
+        cd ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core
+        rm -rf product_config.mk
+        curl https://raw.githubusercontent.com/Pinkdoge/android_build/android-9.0/core/product_config.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/product_config.mk
+
     - name: Start Building
       run: |
         git clone $DT_URL -b $DT_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/$DT_ROUTE
