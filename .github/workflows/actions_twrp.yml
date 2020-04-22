@@ -5,9 +5,15 @@ on:
     types: [started]
 
 env:
-  SOURCE_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
-  SOURCE_BRANCH: twrp-9.0
+  TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
+  TWRP_BRANCH: twrp-9.0
   GIT_USERNAME: Pinkdoge
+  DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
+  DT_BRANCH: treble-9.0
+  DEVICENAME: kiwi
+  DEVICE_BRAND: huawei
+  DT_ROUTE: $DEVICE_BRAND/$DEVICENAME
+  TWRPPRO: omni
 
 jobs:
   build:
@@ -50,6 +56,14 @@ jobs:
         cd workspace
         git config --global user.name "$GIT_USERNAME"
         git config --global user.email "$GIT_USERNAME@github.com"
-        repo init --depth=1 -u $SOURCE_SSHKEY -b $SOURCE_BRANCH
+        repo init --depth=1 -u $TWRP_SSHKEY -b $TWRP_BRANCH
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+        
+    - name: Start Building
+      run: |
+        git clone $DT_URL -b $DT_BRANCH ~/workspace/device/$DT_ROUTE
+        export ALLOW_MISSING_DEPENDENCIES=true
+        . build/envsetup.sh
+        lunch $TWRPPRO_$DEVICENAME-eng
+        mka recoveryimage
         
