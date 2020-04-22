@@ -10,9 +10,9 @@ env:
   GIT_USERNAME: Pinkdoge
   DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
   DT_BRANCH: treble-9.0
-  DEVICENAME: kiwi
-  DT_ROUTE: huawei/kiwi
+  DT_ROUTE: device/huawei/kiwi
   TWRPPRO: omni
+  DEVICENAME: kiwi
 
 jobs:
   build:
@@ -60,10 +60,10 @@ jobs:
         
     - name: Start Building
       run: |
-        git clone https://github.com/Pinkdoge/twrp_device_huawei_kiwi -b treble-9.0 ~/workspace/device/huawei/kiwi
-        cd ~/workspace
+        git clone $DT_URL -b $DT_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/$DT_ROUTE
+        cd ~/work/actions_build_twrp/actions_build_twrp/workspace
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
-        lunch omni_kiwi-eng
+        lunch $TWRPPRO_$DEVICENAME-eng
         mka recoveryimage
         
