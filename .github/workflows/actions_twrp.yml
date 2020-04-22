@@ -57,8 +57,9 @@ jobs:
         git config --global user.email "$GIT_USERNAME@github.com"
         repo init --depth=1 -u $TWRP_SSHKEY -b $TWRP_BRANCH
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+        git clone https://github.com/TeamWin/android_device_qcom_common -b android-9.0 ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
         
-    - name: fix cannot locate product
+    - name: Fix cannot locate product
       run: |
         cd ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core
         rm -rf product_config.mk
