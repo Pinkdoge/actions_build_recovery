@@ -63,7 +63,7 @@ jobs:
         git clone https://github.com/Pinkdoge/twrp_device_huawei_kiwi -b treble-9.0 ~/workspace/device/huawei/kiwi
         cd ~/workspace
         export ALLOW_MISSING_DEPENDENCIES=true
-        . build/envsetup.sh
+        source build/envsetup.sh
         lunch omni_kiwi-eng
         mka recoveryimage
         
