@@ -11,8 +11,7 @@ env:
   DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
   DT_BRANCH: treble-9.0
   DEVICENAME: kiwi
-  DEVICE_BRAND: huawei
-  DT_ROUTE: $DEVICE_BRAND/$DEVICENAME
+  DT_ROUTE: huawei/kiwi
   TWRPPRO: omni
 
 jobs:
@@ -62,6 +61,7 @@ jobs:
     - name: Start Building
       run: |
         git clone $DT_URL -b $DT_BRANCH ~/workspace/device/$DT_ROUTE
+        cd ~/workspace
         export ALLOW_MISSING_DEPENDENCIES=true
         . build/envsetup.sh
         lunch $TWRPPRO_$DEVICENAME-eng
