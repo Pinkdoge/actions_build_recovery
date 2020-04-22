@@ -4,6 +4,11 @@ on:
   watch:
     types: [started]
 
+env:
+  SOURCE_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
+  SOURCE_BRANCH: twrp-9.0
+  GIT_USERNAME: Pinkdoge
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -43,7 +48,8 @@ jobs:
         PATH=~/bin:$PATH
         mkdir workspace
         cd workspace
-        git config --global user.name "Pinkdoge"
-        git config --global user.email "Pinkdoge@github.com"
-        repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
-        repo sync -j3 -c --no-clone-bundle --no-tags
+        git config --global user.name "$GIT_USERNAME"
+        git config --global user.email "$GIT_USERNAME@github.com"
+        repo init --depth=1 -u $SOURCE_SSHKEY -b $SOURCE_BRANCH
+        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+        
