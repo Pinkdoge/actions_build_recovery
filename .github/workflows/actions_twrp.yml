@@ -58,6 +58,7 @@ jobs:
         repo init --depth=1 -u $TWRP_SSHKEY -b $TWRP_BRANCH
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
         git clone https://github.com/TeamWin/android_device_qcom_common -b android-9.0 ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
+        git clone https://github.com/TeamWin/android_external_busybox/ -b android-9.0 ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
         
     - name: Fix cannot locate product
       run: |
