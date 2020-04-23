@@ -15,6 +15,7 @@ env:
   FIX_BRANCH: android-9.0
   FIX_PRODUCT: true
   FIX_DTBCM: false
+  USE_OWN_DT: true
 
 jobs:
   build:
@@ -33,6 +34,7 @@ jobs:
         sudo -E apt-get update
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean 
+        
     - name: Update packages
       run: |
         sudo apt update
@@ -65,6 +67,7 @@ jobs:
         cd ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core
         rm -rf product_config.mk
         curl https://raw.githubusercontent.com/Pinkdoge/android_build/$FIX_BRANCH/core/product_config.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/product_config.mk
+   
     - name: Fix dtbtoolCM bug
       if: env.FIX_DTBCM == 'true'
       run: git clone https://github.com/TeamWin/android_device_qcom_common -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
@@ -72,9 +75,12 @@ jobs:
     - name: Fix busybox bug
       run: git clone https://github.com/TeamWin/android_external_busybox/ -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
 
+    - name: Clone your own device tree
+      if: env.USE_OWN_DT == 'true'
+      run: git clone $DT_URL -b $DT_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/$DT_PATH
+
     - name: Start Building
       run: |
-        git clone $DT_URL -b $DT_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/$DT_PATH
         cd ~/work/actions_build_twrp/actions_build_twrp/workspace
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
