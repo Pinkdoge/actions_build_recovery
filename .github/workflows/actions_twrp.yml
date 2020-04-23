@@ -6,16 +6,17 @@ on:
 
 env:
   TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
-  TWRP_BRANCH: twrp-9.0
+  TWRP_BRANCH: twrp-10.0
   GIT_USERNAME: Pinkdoge
   DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
   DT_BRANCH: treble-9.0
   DT_PATH: device/huawei/kiwi
-  DEVICENAME: kiwi
+  DEVICENAME: onclite
   FIX_BRANCH: android-9.0
-  FIX_PRODUCT: true
+  FIX_PRODUCT: false
   FIX_DTBCM: false
-  USE_OWN_DT: true
+  FIX_BUSYBOX: false
+  USE_OWN_DT: false
 
 jobs:
   build:
@@ -73,6 +74,7 @@ jobs:
       run: git clone https://github.com/TeamWin/android_device_qcom_common -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
 
     - name: Fix busybox bug
+      if: env.FIX_BUSYBOX == 'true'
       run: git clone https://github.com/TeamWin/android_external_busybox/ -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
 
     - name: Clone your own device tree
