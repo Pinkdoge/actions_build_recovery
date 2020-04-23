@@ -6,11 +6,14 @@ on:
 
 env:
   TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
-  VERSION: 9.0
+  TWRP_BRANCH: twrp-9.0
   GIT_USERNAME: Pinkdoge
   DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
+  DT_BRANCH: treble-9.0
   DT_PATH: device/huawei/kiwi
   DEVICENAME: kiwi
+  FIX_BRANCH: android-9.0
+  PRODUCT_VER: 9.0
   FIX_PRODUCT: true
   FIX_DTBCM: false
   USE_OWN_DT: true
@@ -56,7 +59,7 @@ jobs:
         cd workspace
         git config --global user.name "$GIT_USERNAME"
         git config --global user.email "$GIT_USERNAME@github.com"
-        repo init --depth=1 -u $TWRP_SSHKEY -b twrp-$VERSION
+        repo init --depth=1 -u $TWRP_SSHKEY -b $TWRP_BRANCH
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
         
     - name: Fix cannot locate product
@@ -64,18 +67,18 @@ jobs:
       run: |
         cd ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core
         rm -rf product_config.mk
-        curl https://raw.githubusercontent.com/Pinkdoge/actions_build_twrp/master/build/core/product_config-$VERSION.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/product_config.mk
+        curl https://raw.githubusercontent.com/Pinkdoge/actions_build_twrp/master/build/core/product_config-$PRODUCT_VER.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/product_config.mk
 
     - name: Fix dtbtoolCM bug
       if: env.FIX_DTBCM == 'true'
-      run: git clone https://github.com/TeamWin/android_device_qcom_common -b android-$VERSION ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
+      run: git clone https://github.com/TeamWin/android_device_qcom_common -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
 
     - name: Fix busybox bug
-      run: git clone https://github.com/TeamWin/android_external_busybox/ -b android-$VERSION ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
+      run: git clone https://github.com/TeamWin/android_external_busybox/ -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
 
     - name: Clone your own device tree
       if: env.USE_OWN_DT == 'true'
-      run: git clone $DT_URL -b treble-$VERSION ~/work/actions_build_twrp/actions_build_twrp/workspace/$DT_PATH
+      run: git clone $DT_URL -b $DT_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/$DT_PATH
 
     - name: Start Building
       run: |
