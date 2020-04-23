@@ -11,7 +11,6 @@ env:
   DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
   DT_BRANCH: treble-9.0
   DT_ROUTE: device/huawei/kiwi
-  TWRPPRO: omni
   DEVICENAME: kiwi
   FIX_BRANCH: android-9.0
   FIX_PRODUCT: true
@@ -81,6 +80,6 @@ jobs:
         cd ~/work/actions_build_twrp/actions_build_twrp/workspace
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
-        lunch $TWRPPRO_$DEVICENAME-eng
+        lunch omni_$DEVICENAME-eng
         mka recoveryimage
         
