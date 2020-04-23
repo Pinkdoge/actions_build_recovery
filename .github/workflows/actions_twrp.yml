@@ -66,7 +66,7 @@ jobs:
       run: |
         cd ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core
         rm -rf product_config.mk
-        curl https://raw.githubusercontent.com/Pinkdoge/android_build/$FIX_BRANCH/core/product_config.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/product_config.mk
+        curl https://raw.githubusercontent.com/Pinkdoge/actions_build_twrp/master/build/core/$FIX_BRANCH/product_config.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/product_config.mk
    
     - name: Fix dtbtoolCM bug
       if: env.FIX_DTBCM == 'true'
