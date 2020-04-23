@@ -87,5 +87,5 @@ jobs:
       uses: actions/upload-artifact@master
       with: 
        name: TWRP
-       path: ~/work/actions_build_twrp/acotions_build_twrp/workspace/out/target/product/kiwi/recovery.img
+       path: out/target/product/kiwi/recovery.img
        
