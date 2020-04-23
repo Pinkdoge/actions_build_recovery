@@ -16,7 +16,6 @@ env:
   FIX_BRANCH: android-9.0
   FIX_PRODUCT: true
   FIX_DTBCM: false
-  FIX_BUSYBOX: false
 
 jobs:
   build:
@@ -74,7 +73,6 @@ jobs:
       run: git clone https://github.com/TeamWin/android_device_qcom_common -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
 
     - name: Fix busybox bug
-      if: env.FIX_BUSYBOX == 'true'
       run: git clone https://github.com/TeamWin/android_external_busybox/ -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
 
     - name: Start Building
