@@ -1,4 +1,4 @@
-name: ACTIONS_BUILD_TWRP
+name: twrp-building
 
 on:
   watch:
@@ -13,6 +13,10 @@ env:
   DT_ROUTE: device/huawei/kiwi
   TWRPPRO: omni
   DEVICENAME: kiwi
+  FIX_BRANCH: android-9.0
+  FIX_PRODUCT: true
+  FIX_DTBCM: false
+  FIX_BUSYBOX: false
 
 jobs:
   build:
@@ -57,14 +61,21 @@ jobs:
         git config --global user.email "$GIT_USERNAME@github.com"
         repo init --depth=1 -u $TWRP_SSHKEY -b $TWRP_BRANCH
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
-        git clone https://github.com/TeamWin/android_device_qcom_common -b android-9.0 ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
-        git clone https://github.com/TeamWin/android_external_busybox/ -b android-9.0 ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
         
     - name: Fix cannot locate product
+      if: env.FIX_PRODUCT == 'true'
       run: |
         cd ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core
         rm -rf product_config.mk
-        curl https://raw.githubusercontent.com/Pinkdoge/android_build/android-9.0/core/product_config.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/product_config.mk
+        curl https://raw.githubusercontent.com/Pinkdoge/android_build/$FIX_BRANCH/core/product_config.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/product_config.mk
+
+    - name: Fix dtbtoolCM bug
+      if: env.FIX_DTBCM == 'true'
+      run: git clone https://github.com/TeamWin/android_device_qcom_common -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
+
+    - name: Fix busybox bug
+      if: env.FIX_BUSYBOX == 'true'
+      run: git clone https://github.com/TeamWin/android_external_busybox/ -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
 
     - name: Start Building
       run: |
