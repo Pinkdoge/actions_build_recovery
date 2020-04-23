@@ -83,9 +83,13 @@ jobs:
         lunch omni_$DEVICENAME-eng
         mka recoveryimage
         
-    - name: Upload TWRP 
-      uses: actions/upload-artifact@master
-      with: 
-       name: TWRP
-       path: out/target/product/kiwi/recovery.img
+#    - name: Upload TWRP 
+#      uses: actions/upload-artifact@master
+#      with: 
+#       name: TWRP
+#       path: out/target/product/kiwi/recovery.img
        
+    - name: test
+      run: |
+        cd ~/work/actions_build_twrp/actions_build_twrp/workspace/out/target/product/kiwi
+        ls
