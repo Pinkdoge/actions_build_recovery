@@ -85,6 +85,7 @@ jobs:
       run: |
         cd ~/work/actions_build_twrp/actions_build_twrp/workspace
         export ALLOW_MISSING_DEPENDENCIES=true
+        export LC_ALL=C
         source build/envsetup.sh
         lunch omni_$DEVICENAME-eng
         mka recoveryimage
