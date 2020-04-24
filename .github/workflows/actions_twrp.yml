@@ -5,8 +5,8 @@ on:
     types: [started]
 
 env:
-  TWRP_SSHKEY: git://github.com/PitchBlackRecoveryProject/manifest_pb.git
-  TWRP_BRANCH: android-9.0
+  TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
+  TWRP_BRANCH: twrp-9.0
   GIT_USERNAME: Pinkdoge
   DT_URL: https://github.com/Pinkdoge/android_device_huawei_kiwi-pbrp
   DT_BRANCH: android-8.1
@@ -15,7 +15,7 @@ env:
   FIX_BRANCH: android-9.0
   FIX_PRODUCT: true
   FIX_DTBCM: false
-  FIX_BUSYBOX: false
+  FIX_BUSYBOX: true
   USE_OWN_DT: true
 
 jobs:
@@ -85,7 +85,6 @@ jobs:
       run: |
         cd ~/work/actions_build_twrp/actions_build_twrp/workspace
         export ALLOW_MISSING_DEPENDENCIES=true
-        export LC_ALL=C
         source build/envsetup.sh
         lunch omni_$DEVICENAME-eng
         mka recoveryimage
