@@ -12,11 +12,11 @@ env:
   DT_BRANCH: treble-9.0
   DT_PATH: device/huawei/kiwi
   DEVICENAME: kiwi
-  FIX_BRANCH: android-9.0
-  FIX_PRODUCT: false
+  FIX_BRANCH: android-8.1
+  FIX_PRODUCT: true
   FIX_DTBCM: false
   FIX_BUSYBOX: false
-  USE_OWN_DT: false
+  USE_OWN_DT: true
 
 jobs:
   build:
