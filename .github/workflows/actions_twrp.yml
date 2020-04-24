@@ -11,7 +11,7 @@ env:
   DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
   DT_BRANCH: treble-9.0
   DT_PATH: device/huawei/kiwi
-  DEVICENAME: onclite
+  DEVICENAME: oneplus6
   FIX_BRANCH: android-9.0
   FIX_PRODUCT: false
   FIX_DTBCM: false
