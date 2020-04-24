@@ -77,6 +77,17 @@ jobs:
       if: env.FIX_BUSYBOX == 'true'
       run: git clone https://github.com/TeamWin/android_external_busybox/ -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
 
+    - name: Fix armv8-a bug
+      if: env.FIX_ARMV8A == 'true'
+      run: |
+        cd ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/combo
+        rm -rf TARGET_linux-arm.mk
+        curl https://raw.githubusercontent.com/Pinkdoge/actions_build_twrp/master/build/core/$FIX_BRANCH/combo/TARGET_linux-arm.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/combo/TARGET_linux-arm.mk
+        curl https://raw.githubusercontent.com/Pinkdoge/actions_build_twrp/master/build/core/$FIX_BRANCH/combo/arch/arm/armv8-a.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/combo/arch/arm/armv8-a.mk
+        cd ~/work/actions_build_twrp/actions_build_twrp/workspace/build/target/board/generic_arm64
+        rm -rf BoardConfig.mk
+        curl https://raw.githubusercontent.com/Pinkdoge/actions_build_twrp/master/build/target/board/generic_arm64/$FIX_BRANCH/BoardConfig.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/target/board/generic_arm64/BoardConfig.mk
+        
     - name: Clone your own device tree
       if: env.USE_OWN_DT == 'true'
       run: git clone $DT_URL -b $DT_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/$DT_PATH
