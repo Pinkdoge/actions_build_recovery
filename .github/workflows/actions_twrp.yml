@@ -17,6 +17,7 @@ env:
   FIX_DTBCM: false
   FIX_BUSYBOX: false
   USE_OWN_DT: true
+  FIX_ARMV8A: true
 
 jobs:
   build:
