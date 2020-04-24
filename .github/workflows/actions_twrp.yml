@@ -60,7 +60,8 @@ jobs:
         git config --global user.name "$GIT_USERNAME"
         git config --global user.email "$GIT_USERNAME@github.com"
         repo init --depth=1 -u $TWRP_SSHKEY -b $TWRP_BRANCH
-        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+        repo sync -j2
+#        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
         
     - name: Fix cannot locate product
       if: env.FIX_PRODUCT == 'true'
