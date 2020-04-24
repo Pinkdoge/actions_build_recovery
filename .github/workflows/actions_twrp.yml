@@ -6,13 +6,13 @@ on:
 
 env:
   TWRP_SSHKEY: git://github.com/PitchBlackRecoveryProject/manifest_pb.git
-  TWRP_BRANCH: PBRP
+  TWRP_BRANCH: android-9.0
   GIT_USERNAME: Pinkdoge
   DT_URL: https://github.com/Pinkdoge/android_device_huawei_kiwi-pbrp
   DT_BRANCH: android-8.1
   DT_PATH: device/huawei/kiwi
   DEVICENAME: kiwi
-  FIX_BRANCH: android-8.1
+  FIX_BRANCH: android-9.0
   FIX_PRODUCT: true
   FIX_DTBCM: false
   FIX_BUSYBOX: false
