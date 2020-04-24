@@ -8,8 +8,8 @@ env:
   TWRP_SSHKEY: git://github.com/PitchBlackRecoveryProject/manifest_pb.git
   TWRP_BRANCH: PBRP
   GIT_USERNAME: Pinkdoge
-  DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
-  DT_BRANCH: treble-9.0
+  DT_URL: https://github.com/Pinkdoge/android_device_huawei_kiwi-pbrp
+  DT_BRANCH: android-8.1
   DT_PATH: device/huawei/kiwi
   DEVICENAME: kiwi
   FIX_BRANCH: android-8.1
