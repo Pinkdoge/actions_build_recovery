@@ -5,18 +5,18 @@ on:
     types: [started]
 
 env:
-  TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
-  TWRP_BRANCH: twrp-9.0
+  TWRP_SSHKEY: git://github.com/PitchBlackRecoveryProject/manifest_pb.git
+  TWRP_BRANCH: PBRP
   GIT_USERNAME: Pinkdoge
   DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
   DT_BRANCH: treble-9.0
   DT_PATH: device/huawei/kiwi
   DEVICENAME: kiwi
   FIX_BRANCH: android-9.0
-  FIX_PRODUCT: true
+  FIX_PRODUCT: false
   FIX_DTBCM: false
-  FIX_BUSYBOX: true
-  USE_OWN_DT: true
+  FIX_BUSYBOX: false
+  USE_OWN_DT: false
 
 jobs:
   build:
@@ -93,6 +93,6 @@ jobs:
     - name: Upload TWRP 
       uses: actions/upload-artifact@master
       with: 
-       name: TWRP
+       name: Recovery_$DEVICENAME
        path: workspace/out/target/product/kiwi/recovery.img
        
