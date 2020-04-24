@@ -6,17 +6,17 @@ on:
 
 env:
   TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
-  TWRP_BRANCH: twrp-9.0
+  TWRP_BRANCH: twrp-8.1
   GIT_USERNAME: Pinkdoge
   DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
   DT_BRANCH: treble-9.0
   DT_PATH: device/huawei/kiwi
-  DEVICENAME: oneplus6
-  FIX_BRANCH: android-9.0
-  FIX_PRODUCT: false
+  DEVICENAME: kiwi
+  FIX_BRANCH: android-8.1
+  FIX_PRODUCT: true
   FIX_DTBCM: false
   FIX_BUSYBOX: false
-  USE_OWN_DT: false
+  USE_OWN_DT: true
 
 jobs:
   build:
