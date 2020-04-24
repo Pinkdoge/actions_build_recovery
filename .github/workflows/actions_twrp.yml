@@ -8,7 +8,7 @@ env:
   TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
   TWRP_BRANCH: twrp-9.0
   GIT_USERNAME: Pinkdoge
-  DT_URL: https://github.com/Pinkdoge/android_device_huawei_kiwi-pbrp
+  DT_URL: https://github.com/Pinkdoge/android_device_huawei_kiwi-twrp
   DT_BRANCH: android-8.1
   DT_PATH: device/huawei/kiwi
   DEVICENAME: kiwi
