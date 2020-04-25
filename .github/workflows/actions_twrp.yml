@@ -92,6 +92,6 @@ jobs:
     - name: Upload TWRP 
       uses: actions/upload-artifact@master
       with: 
-       name: Recovery_$DEVICENAME
+       name: Recovery
        path: workspace/out/target/product/kiwi/recovery.img
        
