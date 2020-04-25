@@ -14,7 +14,7 @@ env:
   DEVICENAME: kiwi
   FIX_BRANCH: android-9.0
   FIX_PRODUCT: true
-  FIX_DTBCM: false
+  FIX_MISSCOM: true
   FIX_BUSYBOX: true
   USE_OWN_DT: true
 
@@ -69,8 +69,8 @@ jobs:
         rm -rf product_config.mk
         curl https://raw.githubusercontent.com/Pinkdoge/actions_build_twrp/master/build/core/$FIX_BRANCH/product_config.mk > ~/work/actions_build_twrp/actions_build_twrp/workspace/build/core/product_config.mk
    
-    - name: Fix dtbtoolCM bug
-      if: env.FIX_DTBCM == 'true'
+    - name: Fix the bug of missing common
+      if: env.FIX_MISSCOM == 'true'
       run: git clone https://github.com/TeamWin/android_device_qcom_common -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
 
     - name: Fix busybox bug
