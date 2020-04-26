@@ -6,16 +6,16 @@ on:
 
 env:
   TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
-  TWRP_BRANCH: twrp-7.1
+  TWRP_BRANCH: twrp-9.0
   GIT_USERNAME: Pinkdoge
   DT_URL: https://github.com/Pinkdoge/android_device_huawei_kiwi-twrp
-  DT_BRANCH: android-7.1
+  DT_BRANCH: android-8.1
   DT_PATH: device/huawei/kiwi
   DEVICENAME: kiwi
-  FIX_BRANCH: android-7.1
+  FIX_BRANCH: android-8.1
   FIX_PRODUCT: true
-  FIX_MISSCOM: false
-  FIX_BUSYBOX: false
+  FIX_MISSCOM: true
+  FIX_BUSYBOX: true
   USE_OWN_DT: true
 
 jobs:
@@ -71,11 +71,11 @@ jobs:
    
     - name: Fix the bug of missing common
       if: env.FIX_MISSCOM == 'true'
-      run: git clone https://github.com/TeamWin/android_device_qcom_common -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
+      run: git clone https://github.com/TeamWin/android_device_qcom_common -b android-8.0 ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
 
     - name: Fix busybox bug
       if: env.FIX_BUSYBOX == 'true'
-      run: git clone https://github.com/TeamWin/android_external_busybox/ -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
+      run: git clone https://github.com/TeamWin/android_external_busybox -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
         
     - name: Clone your own device tree
       if: env.USE_OWN_DT == 'true'
