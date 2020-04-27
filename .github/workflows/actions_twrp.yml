@@ -1,23 +1,51 @@
+# 欢迎大家使用我的脚本
+# Welcome everyone to use my script
 name: twrp-building
 
+# 核心代码，您不需要动
+# Core code, you don’t need to modify
 on:
   watch:
     types: [started]
 
 env:
+  # 这里填写TWRP的源码树地址和分支
+  # Fill in the TWRP source tree sshkey and branch here
   TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
   TWRP_BRANCH: twrp-9.0
+  # 这里填写你的Github用户名
+  # Fill in your Github username here
   GIT_USERNAME: Pinkdoge
+  # 如需使用自己的Device Tree，请把以下参数设为true，否则则设为false
+  # If you need to use your own Device Tree, please set the following parameters to true, otherwise set to false
+  USE_OWN_DT: true
+  # 这里填写你的Device Tree的地址，分支和Clone到的目录
+  # Fill in your Device Tree's address, branch and Clone to the directory
   DT_URL: https://github.com/Pinkdoge/android_device_huawei_kiwi-twrp
   DT_BRANCH: android-8.1
   DT_PATH: device/huawei/kiwi
+  # 这里填写你要编译的机型代号
+  # Fill in the model code you want to compile here
   DEVICENAME: kiwi
-  FIX_BRANCH: android-8.1
+  # 以下的这些是用来修复编译时的错误
+  # The following are used to fix compilation errors
+  # 第一个是修复不能找到设备的bug，如需开启，请把它设为true
+  # The first is to fix the bug that the device cannot be found. If you want to enable it, please set it to true
   FIX_PRODUCT: true
+  # 第二个是修复缺少device/qcom/common的bug
+  # The second is to fix the bug of missing device/qcom/common
+  # 这个bug会引起许许多多的错误，但只要你看到missing，need by等字眼时，你可以尝试把他设为true
+  # This bug will cause many errors, but as long as you see the words "missing, need by", you can try to set it to true
   FIX_MISSCOM: true
+  # 修复缺少busybox的bug，如需开启，请把它设为true
+  # Fix the bug of missing busybox, if you need to open it, please set it to true
   FIX_BUSYBOX: true
-  USE_OWN_DT: true
-
+  # 这是修复以上bug的分支
+  # This is the branch that fixes the above bug
+  FIX_BRANCH: android-8.1
+  
+# 以下的都是核心代码，一般不用动
+# The following is the core code, generally do not need to move
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -71,11 +99,11 @@ jobs:
    
     - name: Fix the bug of missing common
       if: env.FIX_MISSCOM == 'true'
-      run: git clone https://github.com/TeamWin/android_device_qcom_common -b android-8.0 ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
+      run: git clone https://github.com/TeamWin/android_device_qcom_common -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/device/qcom/common
 
     - name: Fix busybox bug
       if: env.FIX_BUSYBOX == 'true'
-      run: git clone https://github.com/TeamWin/android_external_busybox -b android-9.0 ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
+      run: git clone https://github.com/TeamWin/android_external_busybox -b $FIX_BRANCH ~/work/actions_build_twrp/actions_build_twrp/workspace/external/busybox
         
     - name: Clone your own device tree
       if: env.USE_OWN_DT == 'true'
