@@ -11,7 +11,7 @@ on:
 env:
   # 这里填写TWRP的源码树地址和分支
   # Fill in the TWRP source tree sshkey and branch here
-  TWRP_SSHKEY: https://gitlab.com/OrangeFox/Manifest.git
+  TWRP_SSHKEY: https://gitee.com/pinkdoge/OrangeFox_Manifest.git
   TWRP_BRANCH: fox_9.0
   # 这里填写你的Github用户名
   # Fill in your Github username here
