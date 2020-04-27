@@ -36,7 +36,7 @@ env:
   # The second is to fix the bug of missing device/qcom/common
   # 这个bug会引起许许多多的错误，但只要你看到missing，need by等字眼时，你可以尝试把他设为true
   # This bug will cause many errors, but as long as you see the words "missing, need by", you can try to set it to true
-  FIX_MISSCOM: false
+  FIX_MISSCOM: true
   # 修复缺少busybox的bug，如需开启，请把它设为true
   # Fix the bug of missing busybox, if you need to open it, please set it to true
   FIX_BUSYBOX: false
