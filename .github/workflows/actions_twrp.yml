@@ -39,7 +39,7 @@ env:
   FIX_MISSCOM: false
   # 修复缺少busybox的bug，如需开启，请把它设为true
   # Fix the bug of missing busybox, if you need to open it, please set it to true
-  FIX_BUSYBOX: true
+  FIX_BUSYBOX: false
   # 这是修复以上bug的分支
   # This is the branch that fixes the above bug
   FIX_BRANCH: android-9.0
