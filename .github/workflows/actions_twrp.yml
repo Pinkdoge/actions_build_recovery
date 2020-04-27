@@ -11,8 +11,8 @@ on:
 env:
   # 这里填写TWRP的源码树地址和分支
   # Fill in the TWRP source tree sshkey and branch here
-  TWRP_SSHKEY: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
-  TWRP_BRANCH: twrp-9.0
+  TWRP_SSHKEY: https://gitlab.com/OrangeFox/Manifest.git
+  TWRP_BRANCH: fox_9.0
   # 这里填写你的Github用户名
   # Fill in your Github username here
   GIT_USERNAME: Pinkdoge
@@ -21,8 +21,8 @@ env:
   USE_OWN_DT: true
   # 这里填写你的Device Tree的地址，分支和Clone到的目录
   # Fill in your Device Tree's address, branch and Clone to the directory
-  DT_URL: https://github.com/Pinkdoge/android_device_huawei_kiwi-twrp
-  DT_BRANCH: android-8.1
+  DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
+  DT_BRANCH: android-9.0
   DT_PATH: device/huawei/kiwi
   # 这里填写你要编译的机型代号
   # Fill in the model code you want to compile here
@@ -36,13 +36,13 @@ env:
   # The second is to fix the bug of missing device/qcom/common
   # 这个bug会引起许许多多的错误，但只要你看到missing，need by等字眼时，你可以尝试把他设为true
   # This bug will cause many errors, but as long as you see the words "missing, need by", you can try to set it to true
-  FIX_MISSCOM: true
+  FIX_MISSCOM: false
   # 修复缺少busybox的bug，如需开启，请把它设为true
   # Fix the bug of missing busybox, if you need to open it, please set it to true
   FIX_BUSYBOX: true
   # 这是修复以上bug的分支
   # This is the branch that fixes the above bug
-  FIX_BRANCH: android-8.1
+  FIX_BRANCH: android-9.0
   
 # 以下的都是核心代码，一般不用动
 # The following is the core code, generally do not need to move
