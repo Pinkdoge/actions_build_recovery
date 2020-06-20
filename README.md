@@ -34,8 +34,10 @@
 
 ## 开始
 
-先fork这个仓库，然后点击右上角Star
+对config.json进行commit会立即开始
+
+同时每周进行一次自动编译
 
 ## 编译结果
 
-可以在[Release](https://github.com/Insouciant21/action_build_twrp/releases)下载或是在[Actions Log](https://github.com/Insouciant21/actions_build_twrp/actions)中寻找链接下载
+可以在[Release](https://github.com/Insouciant21/action_build_twrp/releases)下载
