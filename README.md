@@ -2,7 +2,7 @@
 
 ## 配置
 
-配置文件在config.json中
+配置文件是config.json
 
 <code>twrp_url</code>中填入TWRP仓库源地址
 
