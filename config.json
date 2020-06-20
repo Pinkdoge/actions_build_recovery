@@ -2,7 +2,7 @@
   "twrp_url": "https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni",
   "twrp_branch": "twrp-9.0",
   "git_username": "Insouciant21",
-  "git_email": "48847364+Insouciant21@users.noreply.github.com",
+  "git_email": "${{ secerts.email }}",
   "use_own_dt": true,
   "dt_url": "https://github.com/pinkdoge/twrp_device_huawei_kiwi",
   "dt_branch": "android-9.0",
