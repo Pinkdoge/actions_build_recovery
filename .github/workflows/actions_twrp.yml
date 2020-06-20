@@ -85,7 +85,7 @@ jobs:
       run: |
         cd ${{ steps.var.outputs.pwd }}
         export ALLOW_MISSING_DEPENDENCIES=true
-        source build/steps.var.ouputs.etup.sh
+        source build/envsetup.sh
         lunch omni_${{ steps.var.ouputs.device_code }}-eng
         mka recoveryimage
         
