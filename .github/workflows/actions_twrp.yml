@@ -35,6 +35,7 @@ jobs:
         echo "::set-output name=twrp_url::$(jq -r '.twrp_url' config.json)"
         echo "::set-output name=twrp_branch::$(jq -r '.twrp_branch' config.json)"
         echo "::set-output name=git_username::$(jq -r '.git_username config.json')"
+        echo "::set-output name=git_email::$(jq -r '.git_email' config.json)"
         echo "::set-output name=use_own_dt::$(jq -r '.use_own_dt' config.json)"
         echo "::set-output name=dt_url::$(jq -r '.dt_url' config.json)"
         echo "::set-output name=dt_branch::$(jq -r '.dt_branch' config.json)"
