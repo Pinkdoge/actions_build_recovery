@@ -75,7 +75,7 @@ jobs:
       run: git clone ${{ steps.var.outputs.dt_url }} -b ${{ steps.var.outputs.dt_branch }} ${{ steps.pwd.outputs.pwd }}/${{ steps.var.outputs.dt_path }}
     - name: Start Building
       run: |
-        cd ${{ steps.var.outputs.pwd }}
+        cd ${{ steps.pwd.outputs.pwd }}
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
         lunch omni_${{ steps.var.outputs.device_code }}-eng
