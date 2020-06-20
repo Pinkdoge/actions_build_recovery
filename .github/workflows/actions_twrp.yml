@@ -1,5 +1,7 @@
 name: twrp-building
 on:
+  schedule:
+    - cron: '0 0 * * 0'
   push:
     paths: config.json
 jobs:
