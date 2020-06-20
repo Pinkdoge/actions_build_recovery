@@ -39,5 +39,4 @@
 同时每周进行一次自动编译
 # 目前正在测试以下功能
 ## 编译结果
-
-可以在[Release](https://github.com/Insouciant21/action_build_twrp/releases)下载
+~~可以在[Release](https://github.com/Insouciant21/action_build_twrp/releases)下载~~
