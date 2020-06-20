@@ -85,7 +85,7 @@ jobs:
 
     - name: Start Building
       run: |
-        cd ${{ steps.var.outputs.pwd }}
+        cd ${{ steps.var.outputs.pwd }}/workspace
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
         lunch omni_${{ steps.var.outputs.device_code }}-eng
