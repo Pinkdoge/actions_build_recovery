@@ -34,7 +34,7 @@
 
 ## 开始
 
-对config.json进行commit会立即开始
+对config.json进行修改会立即开始
 
 同时每周进行一次自动编译
 
