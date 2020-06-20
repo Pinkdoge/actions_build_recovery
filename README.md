@@ -20,7 +20,7 @@
 
 • <code>dt_path</code> 设备树将要Clone到的本地地址（相对路径）
 
-<code>DEVICECODE</code>机型代号（如Honor 5X是kiwi）
+<code>device_code</code>机型代号（如Honor 5X是kiwi）
 
 ### 修复问题
 
