@@ -46,7 +46,6 @@ jobs:
         echo "::set-output name=fix_misscom::$(jq -r '.fix_misscom' config.json)"
         echo "::set-output name=fix_busybox::$(jq -r '.fix_busybox' config.json)"
         echo "::set-output name=fix_branch::$(jq -r '.fix_branch' config.json)"
-        echo "::set-output name=pwd::$(pwd)"
       id: var
     - name: Install Repo
       run: |
@@ -59,33 +58,35 @@ jobs:
         PATH=~/bin:$PATH
         mkdir workspace
         cd workspace
+        echo "::set-output name=pwd::$(pwd)"
         git config --global user.name "${{ steps.var.outputs.git_username }}"
         git config --global user.email "${{ steps.var.outputs.git_email }}"
         repo init --depth=1 -u ${{ steps.var.outputs.twrp_url }} -b ${{ steps.var.outputs.twrp_branch }}
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+      id: pwd
         
     - name: Fix cannot locate product
       if: steps.var.outputs.fix_product == 'true'
       run: |
-        cd ${{ steps.var.outputs.pwd }}/build/core
+        cd ${{ steps.pwd.outputs.pwd }}/build/core
         rm -rf product_config.mk
-        curl -s https://raw.githubusercontent.com/Pinkdoge/actions_build_twrp/master/build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk > ${{ steps.var.outputs.pwd }}/build/core/product_config.mk
+        curl -s https://raw.githubusercontent.com/Pinkdoge/actions_build_twrp/master/build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk > ${{ steps.pwd.outputs.pwd }}/build/core/product_config.mk
    
     - name: Fix the bug of missing common
       if: steps.var.outputs.fix_misscom == 'true'
-      run: git clone https://github.com/TeamWin/android_device_qcom_common -b ${{ steps.var.outputs.fix_branch }} ${{ steps.var.outputs.pwd }}/device/qcom/common
+      run: git clone https://github.com/TeamWin/android_device_qcom_common -b ${{ steps.var.outputs.fix_branch }} ${{ steps.pwd.outputs.pwd }}/device/qcom/common
 
     - name: Fix busybox bug
       if: steps.var.outputs.fix_busybox == 'true'
-      run: git clone https://github.com/TeamWin/android_external_busybox -b ${{ steps.var.outputs.fix_branch }} ${{ steps.var.outputs.pwd }}/external/busybox
+      run: git clone https://github.com/TeamWin/android_external_busybox -b ${{ steps.var.outputs.fix_branch }} ${{ steps.pwd.outputs.pwd }}/external/busybox
         
     - name: Clone your own device tree
       if: steps.var.outputs.use_own_dt == 'true'
-      run: git clone ${{ steps.var.outputs.dt_url }} -b ${{ steps.var.outputs.dt_branch }} ${{ steps.var.outputs.pwd }}/${{ steps.var.outputs.dt_path }}
+      run: git clone ${{ steps.var.outputs.dt_url }} -b ${{ steps.var.outputs.dt_branch }} ${{ steps.pwd.outputs.pwd }}/${{ steps.var.outputs.dt_path }}
 
     - name: Start Building
       run: |
-        cd ${{ steps.var.outputs.pwd }}/workspace
+        cd ${{ steps.var.outputs.pwd }}
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
         lunch omni_${{ steps.var.outputs.device_code }}-eng
