@@ -8,7 +8,9 @@
 
 <code>TWRP_BRANCH</code>中填入TWRP源码分支
 
-<code>GIT_USERNAME</code>中填入您的Github用户名
+<code>GIT_USERNAME</code>中填入您的Git用户名
+
+<code>GIT_EMAIL</code>中填入您的Git邮箱（Github可使用<code>Github ID+Github用户名@users.noreply.github.com</code>）
 
 <code>USE_OWN_DT</code>，bool值，选择<code>true</code>后以下三项起效
 
