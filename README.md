@@ -1,8 +1,8 @@
-# 利用github actions编译twrp
+# 利用Github Actions编译TWRP
 
 ## 配置
 
-配置文件在[config.json](https://github.com/Insouciant21/actions_build_twrp/blob/master/config.json)中
+配置文件在config.json中
 
 <code>TWRP_URL</code>中填入TWRP仓库源地址
 
