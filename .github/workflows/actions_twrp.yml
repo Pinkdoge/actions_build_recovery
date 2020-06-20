@@ -32,7 +32,7 @@ jobs:
 
     - name: Get variables
       run: |
-	ls -al
+        ls -al
         echo "::set-output name=twrp_url::$(jq -r '.twrp_url' config.json)"
         echo "::set-output name=twrp_branch::$(jq -r '.twrp_branch' config.json)"
         echo "::set-output name=git_username::$(jq -r '.git_username' config.json)"
