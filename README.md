@@ -6,7 +6,7 @@
 
 注意保护自己的Personal Access Token，将它放入仓库Settings里的Secret里后用<code>${{ secrets.YOUR_TOKEN_NAME }}</code>
 
-比如我的secret名字叫做work.则使用<code>${{ secrets.work }}
+比如我的secret名字叫做work.则使用<code>${{ secrets.work }}</code>
 
 ## 配置
 
