@@ -88,8 +88,7 @@ jobs:
       with:
         files: workspace/out/target/product/kiwi/recovery.img
         name: ${{ steps.var.outputs.date }} ${{ steps.var.outputs.device_code }} by ${{ steps.var.outputs.git_username }}
-        tag_name: ${{ steps.var.outputs.twrp_branch }}.${{ steps.var.outputs.device_code }}
-        body: |
-          Android Third-Party Recovery built by ${{ steps.var.outputs.git_username }}
+        tag_name: ${{ steps.var.outputs.device_code }}
+        body: Android Third-Party Recovery built by ${{ steps.var.outputs.git_username }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
