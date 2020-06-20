@@ -1,11 +1,10 @@
 name: twrp-building
 on:
-  watch:
-    types: [started]
+  push:
+    paths: config.json
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -41,6 +40,7 @@ jobs:
         echo "::set-output name=fix_misscom::$(jq -r '.fix_misscom' config.json)"
         echo "::set-output name=fix_busybox::$(jq -r '.fix_busybox' config.json)"
         echo "::set-output name=fix_branch::$(jq -r '.fix_branch' config.json)"
+        echo "::set-output name=date::$(date +%F)"
       id: var
     - name: Install Repo
       run: |
@@ -80,8 +80,13 @@ jobs:
         source build/envsetup.sh
         lunch omni_${{ steps.var.outputs.device_code }}-eng
         mka recoveryimage
-    - name: Upload TWRP 
-      uses: actions/upload-artifact@master
-      with: 
-       name: Recovery
-       path: workspace/out/target/product/kiwi/recovery.img
+    - name: Upload TWRP
+      uses: softprops/action-gh-release@v1
+      with:
+        file: workspace/out/target/product/kiwi/recovery.img
+        release: ${{ steps.var.outputs.date }} ${{ steps.var.outputs.device_code }} by ${{ steps.var.outputs.git_username }}
+        tag_name: ${{ steps.var.outputs.twrp_branch }} for ${{ steps.var.outputs.device_code }}
+        body: |
+          
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
