@@ -12,11 +12,11 @@
 
 <code>USE_OWN_DT</code>，bool值，选择<code>true</code>后以下三项起效
 
-​	<code>DT_URL</code> 设备树地址
+  <code>DT_URL</code> 设备树地址
 
-​	<code>DT_BRANCH</code>设备树分支
+  <code>DT_BRANCH</code>设备树分支
 
-​	<code>DT_PATH</code> 设备树将要Clone到的本地地址（相对路径）
+  <code>DT_PATH</code> 设备树将要Clone到的本地地址（相对路径）
 
 <code>DEVICECODE</code>机型代号（如Honor 5X是kiwi）
 
