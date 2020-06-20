@@ -1,0 +1,14 @@
+{
+  "twrp_url": "https://gitee.com/pinkdoge/orangefox_manifest.git",
+  "twrp_branch": "fox_9.0",
+  "git_username": "Pinkdoge",
+  "use_own_dt": true,
+  "dt_url": "https://github.com/pinkdoge/twrp_device_huawei_kiwi",
+  "dt_branch": "android-9.0",
+  "dt_path": "device/huawei/kiwi",
+  "device_code": "kiwi",
+  "fix_product": true,
+  "fix_misscom": true,
+  "fix_busybox": false,
+  "fix_branch": "android-9.0"
+}
