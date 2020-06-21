@@ -8,7 +8,7 @@
 
 ## 配置
 
-配置文件是[config.json]（config.json)
+配置文件是[config.json](config.json)
 
 ### 基本配置
 
