@@ -1,15 +1,20 @@
 name: twrp-building
+
 on:
-  schedule:
-    - cron: '0 0 * * 0'
+  watch:
+    types: [started]
   push:
     paths: config.json
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
     steps:
     - name: Checkout
       uses: actions/checkout@master
+
     - name: Clean Up
       run: |
         docker rmi `docker images -q`
@@ -18,14 +23,17 @@ jobs:
         sudo -E apt-get update
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean 
+
     - name: Update packages
       run: |
         sudo apt update
         sudo apt upgrade
         sudo apt-get update
         sudo apt-get upgrade
+
     - name: Install required packages
       run: sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc unzip jq
+   
     - name: Get variables
       run: |
         echo "::set-output name=twrp_url::$(jq -r '.twrp_url' config.json)"
@@ -43,11 +51,13 @@ jobs:
         echo "::set-output name=fix_branch::$(jq -r '.fix_branch' config.json)"
         echo "::set-output name=date::$(date +%F)"
       id: var
+    
     - name: Install Repo
       run: |
         mkdir ~/bin
         curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
         chmod a+x ~/bin/repo
+    
     - name: Initialize a Repo client
       run: |
         PATH=~/bin:$PATH
@@ -59,21 +69,26 @@ jobs:
         repo init --depth=1 -u ${{ steps.var.outputs.twrp_url }} -b ${{ steps.var.outputs.twrp_branch }}
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
       id: pwd
+    
     - name: Fix cannot locate product
       if: steps.var.outputs.fix_product == 'true'
       run: |
         cd ${{ steps.pwd.outputs.pwd }}/build/core
         rm -rf product_config.mk
         curl -s https://raw.githubusercontent.com/Pinkdoge/actions_build_twrp/master/build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk > ${{ steps.pwd.outputs.pwd }}/build/core/product_config.mk
+    
     - name: Fix the bug of missing common
       if: steps.var.outputs.fix_misscom == 'true'
       run: git clone https://github.com/TeamWin/android_device_qcom_common -b ${{ steps.var.outputs.fix_branch }} ${{ steps.pwd.outputs.pwd }}/device/qcom/common
+    
     - name: Fix busybox bug
       if: steps.var.outputs.fix_busybox == 'true'
       run: git clone https://github.com/TeamWin/android_external_busybox -b ${{ steps.var.outputs.fix_branch }} ${{ steps.pwd.outputs.pwd }}/external/busybox
+    
     - name: Clone your own device tree
       if: steps.var.outputs.use_own_dt == 'true'
       run: git clone ${{ steps.var.outputs.dt_url }} -b ${{ steps.var.outputs.dt_branch }} ${{ steps.pwd.outputs.pwd }}/${{ steps.var.outputs.dt_path }}
+    
     - name: Start Building
       run: |
         cd ${{ steps.pwd.outputs.pwd }}
@@ -81,6 +96,7 @@ jobs:
         source build/envsetup.sh
         lunch omni_${{ steps.var.outputs.device_code }}-eng
         mka recoveryimage
+    
     - name: Upload TWRP
       uses: softprops/action-gh-release@v1
       with:
