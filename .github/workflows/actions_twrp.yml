@@ -3,7 +3,6 @@ name: twrp-building
 on:
   watch:
     types: [started]
-    paths: config.json
 
 jobs:
   build:
