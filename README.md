@@ -1,7 +1,5 @@
 # 利用Github Actions编译TWRP
 
-目前大部分功能都已经过测试，上传功能由于之前失败导致触发了API使用上限将等到2020/06/21测试
-
 由于编译时间较长，建议把<code>.github/workflows/actions_twrp.yml</code>末尾上传处的<code>${{ secrets.GITHUB_TOKEN }}</code>改成自己的Personal Access Token
 
 注意保护自己的Personal Access Token，将它放入仓库Settings里的Secret里后用<code>${{ secrets.YOUR_TOKEN_NAME }}</code>来替换<code>${{ secrets.GITHUB_TOKEN }}</code>
