@@ -1,16 +1,18 @@
 # 利用Github Actions编译TWRP
 
-目前大部分功能都已经过测试，上传功能由于之前失败导致触发了API使用上限将等到2020/06/21测试
+[![twrp-building](https://github.com/Insouciant21/actions_build_twrp/workflows/twrp-building/badge.svg)](../../actions)
 
-由于编译时间较长，建议把<code>.github/workflows/actions_twrp.yml</code>末尾上传处的<code>${{ secrets.GITHUB_TOKEN }}</code>改成自己的Personal Access Token
+由于编译时间较长，建议把<code>[.github/workflows/actions_twrp.yml](.github/workflows/actions_twrp.yml)</code>末尾上传处的<code>${{ secrets.GITHUB_TOKEN }}</code>改成自己的[Personal Access Token](https://github.com/settings/tokens)
 
-注意保护自己的Personal Access Token，将它放入仓库Settings里的Secret里后用<code>${{ secrets.YOUR_TOKEN_NAME }}</code>来替换<code>${{ secrets.GITHUB_TOKEN }}</code>
+注意保护自己的Personal Access Token，将它放入仓库[Settings](../../settings)里的[Secrets](../../settings/secrets)里后用<code>${{ secrets.YOUR_TOKEN_NAME }}</code>来替换<code>${{ secrets.GITHUB_TOKEN }}</code>
 
 比如我的secret名字叫做work.则使用<code>${{ secrets.work }}</code>
 
 ## 配置
 
-配置文件是config.json
+配置文件是[config.json](config.json)
+
+### 基本配置
 
 <code>twrp_url</code>中填入TWRP仓库源地址
 
@@ -47,4 +49,4 @@
 同时每周进行一次自动编译
 
 ## 编译结果
-可以在[Release](https://github.com/Insouciant21/action_build_twrp/releases)下载
+可以在[Release](../../releases)下载
