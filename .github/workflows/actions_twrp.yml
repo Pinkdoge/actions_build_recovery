@@ -92,7 +92,7 @@ jobs:
         cd ${{ steps.pwd.outputs.pwd }}
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
-        lunch omni_${{ steps.var.outputs.device_code }}-eng
+        lunch omni_${{ steps.var.outputs.device_code }}-userdebug -j2
         mka recoveryimage
     
     - name: Upload TWRP
