@@ -76,6 +76,7 @@ jobs:
         PATH=~/bin:$PATH
         cd workspace
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+        ls -al
     - name: Fix cannot locate product
       if: steps.var.outputs.fix_product == 'true'
       run: |
