@@ -66,10 +66,10 @@ jobs:
     - name: Clone your own device tree
       if: steps.var.outputs.use_own_dt == 'true'
       run: |
-        sed -i "s/dt_url/${{ steps.var.outputs.dt_url }}/g" roomservice.xml
-        sed -i "s/dt_path/${{ steps.var.outputs.dt_path }}/g" roomservice.xml
-        sed -i "s/dt_remote/${{ steps.var.outputs.dt_remote }}/g" roomservice.xml
-        sed -i "s/dt_branch/${{ steps.var.outputs.dt_branch }}/g" roomservice.xml
+        sed -i 's/dt_url/${{ steps.var.outputs.dt_url }}/g' roomservice.xml
+        sed -i 's/dt_path/${{ steps.var.outputs.dt_path }}/g' roomservice.xml
+        sed -i 's/dt_remote/${{ steps.var.outputs.dt_remote }}/g' roomservice.xml
+        sed -i 's/dt_branch/${{ steps.var.outputs.dt_branch }}/g' roomservice.xml
         cp roomservice.xml workspace/.repo/manifests/   
     - name: Repo sync
       run: |
