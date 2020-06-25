@@ -1,0 +1,3 @@
+<manifest>
+  <project name="dt_url" path="dt_path" remote="dt_remote" revision="dt_branch" />
+</manifest>
