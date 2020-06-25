@@ -1,7 +1,6 @@
 # 利用Github Actions编译TWRP
 <a href="../../actions">
-    <img src="https://github.com/Insouciant21/actions_build_twrp/workflows/twrp-building/badge.svg" title="Building Status" />
-</a>
+    <img src="https://github.com/Insouciant21/actions_build_twrp/workflows/twrp-building/badge.svg" title="Building Status" /></a>
 
 由于编译时间较长，建议把<code>[.github/workflows/actions_twrp.yml](.github/workflows/actions_twrp.yml)</code>末尾上传处的<code>${{ secrets.GITHUB_TOKEN }}</code>改成自己的[Personal Access Token](https://github.com/settings/tokens)
 
@@ -37,7 +36,7 @@
 
 <code>fix_product</code> 修复不能找到设备的bug，bool值
 
-<code>fix_misscom </code>修复缺少device/qcom/common的bug，bool值
+<code>fix_misscom</code>修复缺少device/qcom/common的bug，bool值
 
 <code>fix_busybox</code> 修复缺少busybox的bug，bool值
 
