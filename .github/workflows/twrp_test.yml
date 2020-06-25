@@ -66,11 +66,11 @@ jobs:
     - name: Clone your own device tree
       if: steps.var.outputs.use_own_dt == 'true'
       run: |
-        sed -i 's!dt_url!${{ steps.var.outputs.dt_url }}!g' roomservice.xml
-        sed -i 's!dt_path!${{ steps.var.outputs.dt_path }}!g' roomservice.xml
-        sed -i 's/dt_remote/${{ steps.var.outputs.dt_remote }}/g' roomservice.xml
-        sed -i 's/dt_branch/${{ steps.var.outputs.dt_branch }}/g' roomservice.xml
-        cp roomservice.xml workspace/.repo/manifests/   
+        sed -i 's!dt_url!${{ steps.var.outputs.dt_url }}!g' device.xml
+        sed -i 's!dt_path!${{ steps.var.outputs.dt_path }}!g' device.xml
+        sed -i 's/dt_remote/${{ steps.var.outputs.dt_remote }}/g' device.xml
+        sed -i 's/dt_branch/${{ steps.var.outputs.dt_branch }}/g' device.xml
+        cp device.xml workspace/.repo/manifests/   
     - name: Repo sync
       run: |
         PATH=~/bin:$PATH
@@ -84,6 +84,7 @@ jobs:
         cp ${{ steps.pwd.outputs.pwd }}/../build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk ${{ steps.pwd.outputs.pwd }}/build/core/product_config.mk
     - name: Start Building
       run: |
+        PATH=~/bin:$PATH
         cd ${{ steps.pwd.outputs.pwd }}
         export ALLOW_MISSING_DEPENDENCIES=true
         source build/envsetup.sh
