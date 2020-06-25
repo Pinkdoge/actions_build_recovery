@@ -52,6 +52,7 @@ jobs:
         PATH=~/bin:$PATH
         mkdir workspace
         cd workspace
+        mkdir .repo/local_manifests
         echo "::set-output name=pwd::$(pwd)"
         git config --global user.name "${{ steps.var.outputs.git_username }}"
         git config --global user.email "${{ steps.var.outputs.git_email }}"
@@ -59,10 +60,10 @@ jobs:
       id: pwd
     - name: Fix the bug of missing common
       if: steps.var.outputs.fix_misscom == 'true'
-      run: cp repair/omni-9.0/qcom.xml workspace/.repo/manifests/
+      run: cp repair/omni-9.0/qcom.xml workspace/.repo/local_manifests/
     - name: Fix busybox bug
       if: steps.var.outputs.fix_busybox == 'true'
-      run: cp repair/omni-9.0/busybox.xml workspace/.repo/manifests/
+      run: cp repair/omni-9.0/busybox.xml workspace/.repo/local_manifests/
     - name: Clone your own device tree
       if: steps.var.outputs.use_own_dt == 'true'
       run: |
@@ -70,7 +71,7 @@ jobs:
         sed -i 's!dt_path!${{ steps.var.outputs.dt_path }}!g' device.xml
         sed -i 's/dt_remote/${{ steps.var.outputs.dt_remote }}/g' device.xml
         sed -i 's/dt_branch/${{ steps.var.outputs.dt_branch }}/g' device.xml
-        cp device.xml workspace/.repo/manifests/   
+        cp device.xml workspace/.repo/local_manifests/   
     - name: Repo sync
       run: |
         PATH=~/bin:$PATH
