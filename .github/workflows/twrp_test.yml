@@ -49,6 +49,7 @@ jobs:
       run: git clone https://github.com/TeamWin/buildtree_manifests.git repair/
     - name: Initialize a Repo client
       run: |
+        PATH=~/bin:$PATH
         mkdir workspace
         cd workspace
         echo "::set-output name=pwd::$(pwd)"
