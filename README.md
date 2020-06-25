@@ -1,6 +1,7 @@
 # 利用Github Actions编译TWRP
-
-[![twrp-building](https://github.com/Insouciant21/actions_build_twrp/workflows/twrp-building/badge.svg)](../../actions)
+<a href="../../actions">
+    <img src="https://github.com/Insouciant21/actions_build_twrp/workflows/twrp-building/badge.svg" title="Building Status" />
+</a>
 
 由于编译时间较长，建议把<code>[.github/workflows/actions_twrp.yml](.github/workflows/actions_twrp.yml)</code>末尾上传处的<code>${{ secrets.GITHUB_TOKEN }}</code>改成自己的[Personal Access Token](https://github.com/settings/tokens)
 
@@ -24,11 +25,11 @@
 
 <code>use_own_dt</code>，bool值，选择<code>true</code>后以下三项起效
 
-• <code>dt_url</code> 设备树地址
+- <code>dt_url</code> 设备树地址
 
-• <code>dt_branch</code>设备树分支
+- <code>dt_branch</code>设备树分支
 
-• <code>dt_path</code> 设备树将要Clone到的本地地址（相对路径）
+- <code>dt_path</code> 设备树将要Clone到的本地地址（相对路径）
 
 <code>device_code</code>机型代号（如Honor 5X是kiwi）
 
