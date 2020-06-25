@@ -49,7 +49,6 @@ jobs:
       run: git clone https://github.com/TeamWin/buildtree_manifests.git repair/
     - name: Initialize a Repo client
       run: |
-        PATH=~/bin:$PATH
         mkdir workspace
         cd workspace
         echo "::set-output name=pwd::$(pwd)"
@@ -70,10 +69,10 @@ jobs:
         sed -i 's!dt_path!${{ steps.var.outputs.dt_path }}!g' roomservice.xml
         sed -i 's/dt_remote/${{ steps.var.outputs.dt_remote }}/g' roomservice.xml
         sed -i 's/dt_branch/${{ steps.var.outputs.dt_branch }}/g' roomservice.xml
-        cat roomservice.xml
         cp roomservice.xml workspace/.repo/manifests/   
     - name: Repo sync
       run: |
+        PATH=~/bin:$PATH
         cd workspace
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
     - name: Fix cannot locate product
