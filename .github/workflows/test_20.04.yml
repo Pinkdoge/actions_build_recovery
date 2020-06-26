@@ -1,7 +1,7 @@
-name: twrp-building
+name: 20.04_test
 on:
   push:
-    branches: [master]
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-20.04
