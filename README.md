@@ -1,5 +1,16 @@
-# 利用Github Actions编译TWRP
-<a href="../../actions"><img src="https://github.com/Insouciant21/actions_build_twrp/workflows/twrp-building/badge.svg" title="Building Status" /></a>
+<h1 align="center"> 利用Github Actions编译TWRP</h1>
+
+---
+
+<p align="center">
+  A Github Action to build Recovery
+</p>
+
+<div align="center">
+  <a href="../../actions">
+    <img src="https://github.com/Insouciant21/actions_build_twrp/workflows/twrp-building/badge.svg" title="Building Status" />
+  </a>
+</div>
 
 由于编译时间较长，建议把<code>[.github/workflows/actions_twrp.yml](.github/workflows/actions_twrp.yml)</code>末尾上传处的<code>${{ secrets.GITHUB_TOKEN }}</code>改成自己的[Personal Access Token](https://github.com/settings/tokens)
 
