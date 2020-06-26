@@ -2,20 +2,20 @@
 
 <div align="center">
 	<a href="../..">
-    	<img src="demo.jpg" title="Demo" />
-    </a>
+		<img src="demo.jpg" title="Demo" />
+	</a>
 </div>
 
 ---
 
 <p align="center">
-  A Github Action to build Recovery
+	A Github Action to build Recovery
 </p>
 
 <div align="center">
-  <a href="../../actions">
-    <img src="https://github.com/Insouciant21/actions_build_twrp/workflows/twrp-building/badge.svg" title="Building Status" />
-  </a>
+	<a href="../../actions">
+		<img src="../../workflows/twrp-building/badge.svg" title="Building Status" />
+	</a>
 </div>
 
 <br />
