@@ -2,7 +2,7 @@
 
 <div align="center">
 	<a href="../..">
-    	<img src="demo.jpg" alt="Demo" />
+    	<img src="demo.jpg" title="Demo" />
     </a>
 </div>
 
