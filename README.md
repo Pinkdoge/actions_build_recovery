@@ -1,50 +1,55 @@
-# 利用Github Actions编译TWRP
+<h1 align="center"> 利用Github Actions编译TWRP</h1>
 
-[![twrp-building](../../workflows/twrp-building/badge.svg)](../../actions)
+<div align="center">
+	<a href="../..">
+		<img src="demo.jpg" title="Demo" />
+	</a>
+</div>
 
-由于编译时间较长，建议把<code>[.github/workflows/actions_twrp.yml](.github/workflows/actions_twrp.yml)</code>末尾上传处的<code>${{ secrets.GITHUB_TOKEN }}</code>改成自己的[Personal Access Token](https://github.com/settings/tokens)
+---
 
-注意保护自己的Personal Access Token，将它放入仓库[Settings](../../settings)里的[Secrets](../../settings/secrets)里后用<code>${{ secrets.YOUR_TOKEN_NAME }}</code>来替换<code>${{ secrets.GITHUB_TOKEN }}</code>
+<p align="center">
+	A Github Action to build Recovery
+</p>
 
-比如我的secret名字叫做work.则使用<code>${{ secrets.work }}</code>
+<div align="center">
+	<a href="../../actions">
+		<img src="../../workflows/twrp-building/badge.svg" title="Building Status" />
+	</a>
+</div>
+
+<br />
+
+由于编译时间较长，建议把<code>[.github/workflows/actions_twrp.yml](.github/workflows/actions_twrp.yml)</code>末尾上传处的`${{ secrets.GITHUB_TOKEN }}`改成自己的[Personal Access Token](https://github.com/settings/tokens)
+
+注意保护自己的Personal Access Token，将它放入仓库[Settings](../../settings)里的[Secrets](../../settings/secrets)里后用`${{ secrets.YOUR_TOKEN_NAME }}`来替换`${{ secrets.GITHUB_TOKEN }}`
+
+比如我的secret名字叫做work.则使用`${{ secrets.work }}`
 
 ## 配置
 
 配置文件是[config.json](config.json)
 
-### 基本配置
-
-<code>twrp_url</code>中填入TWRP仓库源地址
-
-<code>twrp_branch</code>中填入TWRP源码分支
-
-<code>git_username</code>中填入您的Git用户名
-
-<code>git_email</code>中填入您的Git邮箱（Github可使用<code>Github ID+Github用户名@users.noreply.github.com</code>）
-
-<code>use_own_dt</code>，bool值，选择<code>true</code>后以下三项起效
-
-• <code>dt_url</code> 设备树地址
-
-• <code>dt_branch</code>设备树分支
-
-• <code>dt_path</code> 设备树将要Clone到的本地地址（相对路径）
-
-<code>device_code</code>机型代号（如Honor 5X是kiwi）
-
-### 修复问题
-
-<code>fix_product</code> 修复不能找到设备的bug，bool值
-
-<code>fix_misscom </code>修复缺少device/qcom/common的bug，bool值
-
-<code>fix_busybox</code> 修复缺少busybox的bug，bool值
-
-<code>fix_branch</code> 修复以上bug的分支
+| 名称               | 类型    | 描述                                                         |
+| ------------------ | ------- | ------------------------------------------------------------ |
+| `twrp_url`     | String  | Recovery Manifest地址                                        |
+| `twrp_branch`  | String  | Recovery Manifest分支                                        |
+| `git_username` | String  | 您使用Git的用户名                                            |
+| `git_email`    | String  | 您使用Git的邮箱<sub>（Github可使用`Github ID+Github用户名@users.noreply.github.com`）</sub> |
+| `use_own_dt`   | Boolean | 指示是否使用个人设备树<sub>此项为`true`后以下三项起效</sub>  |
+| `dt_url`           | String  | 您使用的设备树的地址<sub>格式:USER/REPO</sub>                |
+| `dt_branch`    | String  | 您使用的设备树的分支                                         |
+| `dt_remote`        | String  | 您使用设备树的存储库<sub>如github/gitlab</sub>               |
+| `dt_path`      | String  | 指示设备树本地保存位置<sub>示例device/huawei/kiwi</sub>      |
+| `device_code`  | String  | 您将要编译机型的机型代号                                     |
+| `fix_product`  | Boolean | 指示是否修复无法找到设备的问题                               |
+| `fix_branch`       | String  | 指示修复以上问题所使用的分支                                 |
+| `fix_misscom`  | Boolean | 指示是否修复缺少`device/qcom/common`的问题                   |
+| `fix_busybox`      | Boolean | 指示是否修复缺少`busybox`的问题                              |
 
 ## 开始
 
-点击star就会立即开始
+Fork此仓库后，点击右上角Star就会开始
 
 ## 编译结果
 可以在[Release](../../releases)下载
