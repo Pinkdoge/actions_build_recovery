@@ -1,5 +1,11 @@
 <h1 align="center"> 利用Github Actions编译TWRP</h1>
 
+<div align="center">
+	<a href="../..">
+    	<img src="demo.jpg" alt="Demo" />
+    </a>
+</div>
+
 ---
 
 <p align="center">
