@@ -255,7 +255,7 @@ PRODUCT_BOOT_JARS := $(strip $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_BOOT_JARS))
 PRODUCT_SYSTEM_SERVER_JARS := $(strip $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_SYSTEM_SERVER_JARS))
 
 # Find the device that this product maps to.
-TARGET_DEVICE := kiwi
+TARGET_DEVICE := device_code
 
 # Figure out which resoure configuration options to use for this
 # product.
