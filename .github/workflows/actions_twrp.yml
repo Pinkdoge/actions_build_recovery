@@ -84,6 +84,7 @@ jobs:
       run: |
         cd ${{ steps.pwd.outputs.pwd }}/build/core
         rm -rf product_config.mk
+        sed -i 's!device_code!${{ steps.var.outputs.device_code }}!g' ${{ steps.pwd.outputs.pwd }}/../build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk
         cp ${{ steps.pwd.outputs.pwd }}/../build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk ${{ steps.pwd.outputs.pwd }}/build/core/product_config.mk
     - name: Start Building
       run: |
