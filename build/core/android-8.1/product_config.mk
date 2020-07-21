@@ -253,7 +253,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS := $(strip $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_D
 PRODUCT_ALWAYS_PREOPT_EXTRACTED_APK := $(strip $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_ALWAYS_PREOPT_EXTRACTED_APK))
 
 # Find the device that this product maps to.
-TARGET_DEVICE := kiwi
+TARGET_DEVICE := device_code
 
 # Figure out which resoure configuration options to use for this
 # product.
