@@ -97,7 +97,7 @@ jobs:
     - name: Upload TWRP
       uses: softprops/action-gh-release@v1
       with:
-        files: workspace/out/target/product/kiwi/recovery.img
+        files: workspace/out/target/product/${{ steps.var.outputs.device_code }}/recovery.img
         name: ${{ steps.var.outputs.date }} ${{ steps.var.outputs.device_code }} by ${{ steps.var.outputs.git_username }}
         tag_name: ${{ github.run_id }}
         body: Android Third-Party Recovery built by ${{ steps.var.outputs.git_username }}
