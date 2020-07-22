@@ -1,4 +1,4 @@
-<h1 align="center"> 利用Github Actions编译TWRP</h1>
+<h1 align="center"> 利用Github Actions编译REC</h1>
 
 <div align="center">
 	<a href="../..">
@@ -14,13 +14,13 @@
 
 <div align="center">
 	<a href="../../actions">
-		<img src="../../workflows/twrp-building/badge.svg" title="Building Status" />
+		<img src="../../workflows/rec-building/badge.svg" title="Building Status" />
 	</a>
 </div>
 
 <br />
 
-由于编译时间较长，建议把<code>[.github/workflows/actions_twrp.yml](.github/workflows/actions_twrp.yml)</code>末尾上传处的`${{ secrets.GITHUB_TOKEN }}`改成自己的[Personal Access Token](https://github.com/settings/tokens)
+由于编译时间较长，建议把<code>[.github/workflows/actions_recovery.yml](.github/workflows/actions_recovery.yml)</code>末尾上传处的`${{ secrets.GITHUB_TOKEN }}`改成自己的[Personal Access Token](https://github.com/settings/tokens)
 
 注意保护自己的Personal Access Token，将它放入仓库[Settings](../../settings)里的[Secrets](../../settings/secrets)里后用`${{ secrets.YOUR_TOKEN_NAME }}`来替换`${{ secrets.GITHUB_TOKEN }}`
 
