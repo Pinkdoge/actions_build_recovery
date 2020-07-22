@@ -1,14 +1,18 @@
-name: twrp-building
+name: rec-building
+
 on:
   watch:
     types: [started]
+    
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
     runs-on: ubuntu-latest
+    
     steps:
     - name: Checkout
       uses: actions/checkout@master
+      
     - name: Clean Up
       run: |
         docker rmi `docker images -q`
@@ -16,13 +20,16 @@ jobs:
         sudo apt -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
         sudo apt update
         sudo apt -y autoremove --purge
-        sudo apt clean 
+        sudo apt clean
+        
     - name: Update packages
       run: |
         sudo apt update
         sudo apt full-upgrade
+        
     - name: Install required packages
       run: sudo apt install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc unzip jq
+      
     - name: Get variables
       run: |
         echo "::set-output name=twrp_url::$(jq -r '.twrp_url' config.json)"
@@ -41,13 +48,16 @@ jobs:
         echo "::set-output name=fix_branch::$(jq -r '.fix_branch' config.json)"
         echo "::set-output name=date::$(date +%F)"
       id: var
+      
     - name: Install Repo
       run: |
         mkdir ~/bin
         curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
         chmod a+x ~/bin/repo
+        
     - name: Initialize Repair Manifest
       run: git clone https://github.com/TeamWin/buildtree_manifests.git repair/
+      
     - name: Initialize a Repo client
       run: |
         PATH=~/bin:$PATH
@@ -59,12 +69,15 @@ jobs:
         repo init --depth=1 -u ${{ steps.var.outputs.twrp_url }} -b ${{ steps.var.outputs.twrp_branch }}
         mkdir .repo/local_manifests
       id: pwd
+      
     - name: Fix the bug of missing common
       if: steps.var.outputs.fix_misscom == 'true'
       run: cp repair/omni-9.0/qcom.xml workspace/.repo/local_manifests/
+      
     - name: Fix busybox bug
       if: steps.var.outputs.fix_busybox == 'true'
       run: cp repair/omni-9.0/busybox.xml workspace/.repo/local_manifests/
+      
     - name: Clone your own device tree
       if: steps.var.outputs.use_own_dt == 'true'
       run: |
@@ -72,13 +85,15 @@ jobs:
         sed -i 's!dt_path!${{ steps.var.outputs.dt_path }}!g' device.xml
         sed -i 's/dt_remote/${{ steps.var.outputs.dt_remote }}/g' device.xml
         sed -i 's/dt_branch/${{ steps.var.outputs.dt_branch }}/g' device.xml
-        cp device.xml workspace/.repo/local_manifests/   
+        cp device.xml workspace/.repo/local_manifests/ 
+          
     - name: Repo sync
       run: |
         PATH=~/bin:$PATH
         cd workspace
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
         ls -al
+        
     - name: Fix cannot locate product
       if: steps.var.outputs.fix_product == 'true'
       run: |
@@ -86,6 +101,7 @@ jobs:
         rm -rf product_config.mk
         sed -i 's!device_code!${{ steps.var.outputs.device_code }}!g' ${{ steps.pwd.outputs.pwd }}/../build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk
         cp ${{ steps.pwd.outputs.pwd }}/../build/core/${{ steps.var.outputs.fix_branch }}/product_config.mk ${{ steps.pwd.outputs.pwd }}/build/core/product_config.mk
+        
     - name: Start Building
       run: |
         PATH=~/bin:$PATH
@@ -95,7 +111,8 @@ jobs:
         source build/envsetup.sh
         lunch omni_${{ steps.var.outputs.device_code }}-eng 
         mka recoveryimage -j$(nproc --all)
-    - name: Upload TWRP
+        
+    - name: Upload REC
       uses: softprops/action-gh-release@v1
       with:
         files: workspace/out/target/product/${{ steps.var.outputs.device_code }}/recovery.img
