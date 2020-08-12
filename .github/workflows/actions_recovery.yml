@@ -83,8 +83,8 @@ jobs:
       run: |
         sed -i 's!dt_url!${{ steps.var.outputs.dt_url }}!g' device.xml
         sed -i 's!dt_path!${{ steps.var.outputs.dt_path }}!g' device.xml
-        sed -i 's/dt_remote/${{ steps.var.outputs.dt_remote }}/g' device.xml
-        sed -i 's/dt_branch/${{ steps.var.outputs.dt_branch }}/g' device.xml
+        sed -i 's!dt_remote!${{ steps.var.outputs.dt_remote }}!g' device.xml
+        sed -i 's!dt_branch!${{ steps.var.outputs.dt_branch }}!g' device.xml
         cp device.xml workspace/.repo/local_manifests/ 
           
     - name: Repo sync
