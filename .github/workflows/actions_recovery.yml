@@ -64,9 +64,9 @@ jobs:
         mkdir workspace
         cd workspace
         echo "::set-output name=pwd::$(pwd)"
-        git config --global user.name "${{ steps.var.outputs.git_username }}"
-        git config --global user.email "${{ steps.var.outputs.git_email }}"
-        repo init --depth=1 -u ${{ steps.var.outputs.twrp_url }} -b ${{ steps.var.outputs.twrp_branch }}
+        git config --global user.name "${{GHF0127}}"
+        git config --global user.email "${{3172430761@qq.com}}"
+        repo init --depth=1 -u ${{https://github.com/xiaomi-classic-dev/android_device_xiaomi_virgo.git}} -b ${{twrp-7.1}}
         mkdir .repo/local_manifests
       id: pwd
       
