@@ -15,18 +15,18 @@ env:
   TWRP_BRANCH: fox_9.0
   # 这里填写你的Github用户名
   # Fill in your Github username here
-  GIT_USERNAME: Pinkdoge
+  GIT_USERNAME: GHF0127
   # 如需使用自己的Device Tree，请把以下参数设为true，否则则设为false
   # If you need to use your own Device Tree, please set the following parameters to true, otherwise set to false
   USE_OWN_DT: true
   # 这里填写你的Device Tree的地址，分支和Clone到的目录
   # Fill in your Device Tree's address, branch and Clone to the directory
-  DT_URL: https://github.com/Pinkdoge/twrp_device_huawei_kiwi
-  DT_BRANCH: android-9.0
-  DT_PATH: device/huawei/kiwi
+  DT_URL: https://github.com/xiaomi-classic-dev/android_device_xiaomi_virgo.git
+  DT_BRANCH: twrp-7.1
+  DT_PATH: device/xiaomi/virgo
   # 这里填写你要编译的机型代号
   # Fill in the model code you want to compile here
-  DEVICENAME: kiwi
+  DEVICENAME: virgo
   # 以下的这些是用来修复编译时的错误
   # The following are used to fix compilation errors
   # 第一个是修复不能找到设备的bug，如需开启，请把它设为true
